@@ -1,0 +1,32 @@
+{
+  "type": "module",
+  "name": "server-final-gv-jz",
+  "version": "1.0.0",
+  "description": "Node.js http webserver for the CS5610 final project of Greg Valcourt and Josie Zvelebilova",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GValcourt/Server-Final-Project-GV-JZ.git"
+  },
+  "keywords": [
+    "Node",
+    "REST",
+    "Server",
+    "HTTP"
+  ],
+  "author": "Gregory Valcourt, Josie Zvelebilova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GValcourt/Server-Final-Project-GV-JZ/issues"
+  },
+  "homepage": "https://github.com/GValcourt/Server-Final-Project-GV-JZ#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
+  }
+}

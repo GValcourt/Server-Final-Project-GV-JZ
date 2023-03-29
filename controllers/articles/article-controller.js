@@ -50,7 +50,7 @@ const findArticleById = (req, res) => {
     const articleId = req.params.uid;
     const article = articles
       .find(a => a._id === articleId);
-    res.json(articles);
+    res.json(article);
 }
 
 export default ArticleController

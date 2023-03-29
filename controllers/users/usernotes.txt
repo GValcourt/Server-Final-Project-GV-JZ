@@ -1,0 +1,1 @@
+Each users should store what ever is required by the ProfileComponent

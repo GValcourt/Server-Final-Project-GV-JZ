@@ -1,0 +1,1 @@
+Each article should should store what is required by each ArticleComponent

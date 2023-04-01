@@ -1,5 +1,6 @@
 export default [
-    { "_posterid": 12345,
+  {
+    "_posterid": 12345,
       "_postid": 12345,
       "title": "My Galvant Around New York",
       "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta urna sed ante molestie elementum id a mauris.\
@@ -28,5 +29,11 @@ export default [
       vulputate ipsum. Integer suscipit ac eros consequat elementum. In gravida interdum magna, eget molestie nulla suscipit sed.\
       Etiam maximus odio et metus scelerisque porta. Vestibulum ornare ante mauris, et maximus tortor placerat sed. Curabitur\
       consequat dictum ligula eu iaculis.",
-      "image1":""},
+      "image1":"",
+      "location":{
+        locationName: "The Roux Institute at Northeastern University, Fore Street, Portland, ME, USA",
+        lat: 43.6615206,
+        long: -70.2466249
+      }
+},
   ]

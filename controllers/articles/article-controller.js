@@ -1,41 +1,21 @@
 import texts from './articles.js'
 let articles = texts
 
+import {getLocationFromURL} from '../google/google-controller.js'
+
 const ArticleController = (app) => {
     app.get('/api/articles', findArticle);
     app.get('/api/articles/:uid', findArticleById);
     app.post('/api/articles', createArticle);
     app.delete('/api/articles/:uid', deleteArticle);
     app.put('/api/articles/:uid', updateArticle);
-    app.post('/api/articles/google/check', checkLocationValidity)
 }
 
 //Converts a location string into a formatted url in order to collect the lat and long for storage
-async function getLocationFromURL (location) {
-  let url = location.replace(' ', '%20');
-  let response = await fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${url}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=AIzaSyBq6A5uqteMK_iK8T-d8YlMFmCw3CyQCWA`);
 
-  if (response.ok) {
-    let jsonObj = await response.json();
-
-    //console.log(jsonObj.candidates[0])
-    return jsonObj.candidates[0]
-  } else {
-    alert("HTTP-Error: " + response.status);
-  }
-}
-
-
-const checkLocationValidity = async (req, res) => {
-  console.log(req.body)
-  const testObj = req.body;
-  const value = await getLocationFromURL(testObj.locationName)
-  const sending = {name : value.name, formatted_address: value.formatted_address}
-  console.log(sending)
-  res.json(sending)
-}
-
+//console.log(await getPlaceDetails('ChIJ68aBlEKuEmsRHUA9oME5Zh0')) //for testing
 //console.log(await getLocationFromURL("Museum of Contemporary Art Australia")) //for testing
+
 
 const createArticle = async (req, res) => {
     const newArticle = req.body;
@@ -50,7 +30,7 @@ const createArticle = async (req, res) => {
       lat : value.geometry.location.lat,
       long : value.geometry.location.lng
     }
-    console.log(newArticle)
+    //console.log(newArticle)
     articles.push(newArticle);
     res.json(newArticle);
 }

@@ -11,7 +11,7 @@ const ArticleController = (app) => {
     app.put('/api/articles/:uid', updateArticle);
 }
 
-//Converts a location string into a formatted url in order to collect the lat and long for storage
+
 
 //console.log(await getPlaceDetails('ChIJ68aBlEKuEmsRHUA9oME5Zh0')) //for testing
 //console.log(await getLocationFromURL("Museum of Contemporary Art Australia")) //for testing

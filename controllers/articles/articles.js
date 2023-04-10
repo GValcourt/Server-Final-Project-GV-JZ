@@ -1,8 +1,8 @@
 export default [
   {
-    "_posterid": 12345,
+    "_posterid": 312,
       "_postid": 12345,
-      "title": "My Galvant Around New York",
+      "title": "My Galvant Around Portland",
       "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta urna sed ante molestie elementum id a mauris.\
       Aenean consequat malesuada pharetra. Nunc at metus lectus. Fusce ultrices orci eu libero bibendum, eget auctor sem eleifend.\
       Duis lobortis, ipsum vel pulvinar ullamcorper, nunc enim lacinia nulla, aliquam euismod sem nunc nec ante. Aliquam dapibus \
@@ -30,10 +30,12 @@ export default [
       Etiam maximus odio et metus scelerisque porta. Vestibulum ornare ante mauris, et maximus tortor placerat sed. Curabitur\
       consequat dictum ligula eu iaculis.",
       "image1":"",
-      "location":{
+      "date": "Sun Apr 09 2023",
+      "location":[{
         locationName: "The Roux Institute at Northeastern University, Fore Street, Portland, ME, USA",
         lat: 43.6615206,
-        lng: -70.2466249
-      }
+        lng: -70.2466249,
+        placeID: "ChIJcUVoBcmdskwRwMf9m2cqlmo"}
+    ]
 },
   ]

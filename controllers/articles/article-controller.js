@@ -19,17 +19,9 @@ const ArticleController = (app) => {
 
 const createArticle = async (req, res) => {
     const newArticle = req.body;
-    newArticle._id = parseInt((new Date()).getTime() + '');
-
-    const value = await getLocationFromURL(newArticle.location.locationName)
-    //console.log(newArticle.location.locationName)
-    //console.log(value)
-
-    newArticle.location = {
-      locationName: newArticle.location.locationName,
-      lat : value.geometry.location.lat,
-      long : value.geometry.location.lng
-    }
+    newArticle._id = (new Date()).getTime() + '';
+    newArticle.date = (new Date).toDateString();
+    //handling place_id on client side
     //console.log(newArticle)
     articles.push(newArticle);
     res.json(newArticle);

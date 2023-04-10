@@ -6,6 +6,8 @@ import {getLocationFromURL} from '../google/google-controller.js'
 const ArticleController = (app) => {
     app.get('/api/articles', findArticle);
     app.get('/api/articles/:uid', findArticleById);
+    app.get('/api/articles/byplace/:uid', findArticleByPlace);
+    app.get('/api/articles/pred/:pred/:value', findArticleByPred);
     app.post('/api/articles', createArticle);
     app.delete('/api/articles/:uid', deleteArticle);
     app.put('/api/articles/:uid', updateArticle);
@@ -62,5 +64,35 @@ const findArticleById = async (req, res) => {
       .find(a => a._id === articleId);
     res.json(article);
 }
+
+const findArticleByPlace = async (req, res) => {
+  const place_id = req.params.uid;
+  //console.log(place_id)
+  function searchHandler (locations, place_id) {
+    let testarray = locations.filter(location => location.placeID === place_id)
+    //console.log(testarray)
+    if (testarray.length > 0){
+      //console.log("place_id in the array")
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  const articlesOfType = articles
+    .filter(a => searchHandler(a.location, place_id));
+  res.json(articlesOfType);
+}
+
+
+const findArticleByPred = async (req, res) => {
+  const pred = req.params.pred;
+  const value = parseInt(req.params.value);
+  //console.log(place_id)
+  const articlesOfType = articles
+    .filter(a => a[pred] === value);
+  res.json(articlesOfType);
+}
+
 
 export default ArticleController

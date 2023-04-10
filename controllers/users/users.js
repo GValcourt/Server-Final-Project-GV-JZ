@@ -1,5 +1,8 @@
 export default [
-    { "username": "alice",   "type": "FACULTY", "_id": "123" },
-    { "username": "bob",     "type": "STUDENT", "_id": "234" },
-    { "username": "charlie", "type": "FACULTY", "_id": "345" }
+    { "username": "gvalcourt", "user_type": "sysadmin", "_id": "312",
+    "first_name": "Greg", "last_name": "Valcourt", "password": "passwords-r-us",
+    "likes":["ChIJcUVoBcmdskwRwMf9m2cqlmo"]},
+    { "username": "jzvelebilova", "user_type": "sysadmin", "_id": "000",
+    "first_name": "Josie", "last_name": "Zvelebilova", "password": "newpassword",
+    "likes":["ChIJcUVoBcmdskwRwMf9m2cqlmo"] },
   ]

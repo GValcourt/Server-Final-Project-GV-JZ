@@ -1,7 +1,7 @@
 export default [
   {
-    "_posterid": 312,
-      "_postid": 12345,
+    "_posterid": "312",
+      "_postid": "12345",
       "title": "My Galvant Around Portland",
       "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta urna sed ante molestie elementum id a mauris.\
       Aenean consequat malesuada pharetra. Nunc at metus lectus. Fusce ultrices orci eu libero bibendum, eget auctor sem eleifend.\

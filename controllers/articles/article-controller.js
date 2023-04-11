@@ -1,8 +1,6 @@
 import texts from './articles.js'
 let articles = texts
 
-import {getLocationFromURL} from '../google/google-controller.js'
-
 const ArticleController = (app) => {
     app.get('/api/articles', findArticle);
     app.get('/api/articles/:uid', findArticleById);
@@ -21,7 +19,7 @@ const ArticleController = (app) => {
 
 const createArticle = async (req, res) => {
     const newArticle = req.body;
-    newArticle._id = (new Date()).getTime() + '';
+    newArticle._postid = (new Date()).getTime() + '';
     newArticle.date = (new Date).toDateString();
     //handling place_id on client side
     //console.log(newArticle)
@@ -32,7 +30,7 @@ const createArticle = async (req, res) => {
 const deleteArticle = async (req, res) => {
     const articleId = req.params['uid'];
     articles = articles.filter(art =>
-      art._id !== articleId);
+      art._postid !== articleId);
     res.sendStatus(200);
 }
 
@@ -40,7 +38,7 @@ const updateArticle = async (req, res) => {
     const articleId = req.params['uid'];
     const updates = req.body;
     articles = articles.map((art) =>
-    art._id === articleId ?
+    art._postid === articleId ?
         {...art, ...updates} :
         art
     );
@@ -59,9 +57,10 @@ const findArticle = async (req, res) => {
 }
 
 const findArticleById = async (req, res) => {
+    //console.log(req.params)
     const articleId = req.params.uid;
     const article = articles
-      .find(a => a._id === articleId);
+      .find(a => a._postid === articleId);
     res.json(article);
 }
 
@@ -87,7 +86,7 @@ const findArticleByPlace = async (req, res) => {
 
 const findArticleByPred = async (req, res) => {
   const pred = req.params.pred;
-  const value = parseInt(req.params.value);
+  const value = req.params.value;
   //console.log(place_id)
   const articlesOfType = articles
     .filter(a => a[pred] === value);

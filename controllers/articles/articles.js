@@ -29,7 +29,7 @@ export default [
       vulputate ipsum. Integer suscipit ac eros consequat elementum. In gravida interdum magna, eget molestie nulla suscipit sed.\
       Etiam maximus odio et metus scelerisque porta. Vestibulum ornare ante mauris, et maximus tortor placerat sed. Curabitur\
       consequat dictum ligula eu iaculis.",
-      "image1":"roux_institute.jpg",
+      "images":["roux_institute.jpg"],
       "date": "Sun Apr 09 2023",
       "location":[{
         locationName: "The Roux Institute at Northeastern University, Fore Street, Portland, ME, USA",

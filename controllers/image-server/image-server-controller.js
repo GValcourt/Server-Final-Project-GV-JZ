@@ -16,7 +16,6 @@ const storage = getStorage(app);
 
 const ImageController = (app) => {
     app.get('/api/images/get/:imageid', getImage)
-    app.post('/api/images/post', postImage)
 }
 
 
@@ -25,20 +24,8 @@ const getImage = async (req, res) => {
     const imageid = req.params.imageid;
     let response = await getDownloadURL(ref(storage, `images/${imageid}`))
     res.json(response)
-  }
-
-//returns the call of a waiting getLocationOptions BROKEN
-const postImage = async (req, res) => {
-  console.log(req.data)
-  console.log(req.body)
-  console.log(req.file)
-  //console.log(req.headers)
-  //uploadBytes(ref(storage, 'images'), req.body).then((snapshot)=>{
-    //console.log('uploaded a blob or file!')
-  //})
-  //console.log(value)
-  //res.json(value)
 }
+
   
 
 export default ImageController

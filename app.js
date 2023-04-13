@@ -6,6 +6,11 @@ import ArticleController from "./controllers/articles/article-controller.js"
 import GoogleController from './controllers/google/google-controller.js'
 import ImageController from './controllers/image-server/image-server-controller.js'
 
+import mongoose from "mongoose";
+  const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
+  mongoose.connect(CONNECTION_STRING);
+  //console.log(CONNECTION_STRING)
+
 const app = express()
 app.use(cors())
 app.use(express.json());

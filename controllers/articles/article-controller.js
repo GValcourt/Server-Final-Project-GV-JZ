@@ -1,13 +1,10 @@
-import texts from './articles.js'
 import * as articleDao from './article-dao.js'
 import * as locationDao from '../locations/location-dao.js'
-let articles = texts
 
 const ArticleController = (app) => {
     app.get('/api/articles', findArticles);
     app.get('/api/articles/:uid', findArticleById);
     app.get('/api/articles/byplace/:uid', findArticleByPlace);
-    app.get('/api/articles/pred/:pred/:value', findArticleByPred);
     app.post('/api/articles', createArticle);
     app.delete('/api/articles/:uid', deleteArticle);
     app.put('/api/articles/:uid', updateArticle);
@@ -57,23 +54,16 @@ const createArticle = async (req, res) => {
     res.json(orgArticle);
 }
 
-//fix this
 const deleteArticle = async (req, res) => {
     const articleId = req.params['uid'];
-    articles = articles.filter(art =>
-      art._postid !== articleId);
+    let value = await articleDao.deleteArticle(articleId)
     res.sendStatus(200);
 }
 
-//fix this
 const updateArticle = async (req, res) => {
     const articleId = req.params['uid'];
     const updates = req.body;
-    articles = articles.map((art) =>
-    art._postid === articleId ?
-        {...art, ...updates} :
-        art
-    );
+    let value = await articleDao.updateArticle(articleId, updates)
     res.sendStatus(200);
 }
 
@@ -109,16 +99,5 @@ const findArticleByPlace = async (req, res) => {
   }
   res.json(modifiedArticles);
 }
-
-
-const findArticleByPred = async (req, res) => {
-  const pred = req.params.pred;
-  const value = req.params.value;
-  //console.log(place_id)
-  const articlesOfType = articles
-    .filter(a => a[pred] === value);
-  res.json(articlesOfType);
-}
-
 
 export default ArticleController

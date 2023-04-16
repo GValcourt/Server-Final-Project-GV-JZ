@@ -5,6 +5,7 @@ import HelloController
 import ArticleController from "./controllers/articles/article-controller.js"
 import GoogleController from './controllers/google/google-controller.js'
 import ImageController from './controllers/image-server/image-server-controller.js'
+import UsersController from "./controllers/users/users-controller.js";
 
 const app = express()
 app.use(cors())
@@ -13,4 +14,5 @@ ArticleController(app)
 HelloController(app)
 GoogleController(app)
 ImageController(app)
+UsersController(app)
 app.listen(4000)

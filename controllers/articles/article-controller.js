@@ -5,6 +5,7 @@ const ArticleController = (app) => {
     app.get('/api/articles', findArticles);
     app.get('/api/articles/:uid', findArticleById);
     app.get('/api/articles/byplace/:uid', findArticleByPlace);
+    app.get('/api/articles/pred/:pred/:value', findArticlePred);
     app.post('/api/articles', createArticle);
     app.delete('/api/articles/:uid', deleteArticle);
     app.put('/api/articles/:uid', updateArticle);
@@ -71,7 +72,7 @@ const findArticles = async (req, res) => {
   const articles = await articleDao.findArticles();
   //console.log(articles)
   let modifiedArticles = await replaceLocationID(articles)
-  console.log(modifiedArticles)
+  //console.log(modifiedArticles)
   res.json(modifiedArticles);
 }
 
@@ -97,6 +98,15 @@ const findArticleByPlace = async (req, res) => {
   if (modifiedArticles.length > 0){
     //console.log(modifiedArticles[0]._id)
   }
+  res.json(modifiedArticles);
+}
+
+
+const findArticlePred = async (req, res) => {
+  const pred = req.params.pred;
+  const value = req.params.value;
+  const articles = await articleDao.findArticlesPred(pred, value)
+  let modifiedArticles = await replaceLocationID(articles)
   res.json(modifiedArticles);
 }
 

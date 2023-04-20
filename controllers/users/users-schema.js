@@ -5,7 +5,10 @@ const schema = mongoose.Schema({
     firstName: String,
     lastName: String,
     user_type: user_type,
-    username: String
+    username: { type: String, unique: true, required: true },
+    password: { type: String, required: true },
+    email: String,
+
 }, {collection: 'users'});
 
 export default schema;

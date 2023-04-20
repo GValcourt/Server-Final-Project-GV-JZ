@@ -89,10 +89,14 @@ const findArticleById = async (req, res) => {
 
 const findArticleByPlace = async (req, res) => {
   const place_id = req.params.uid;
-  //console.log(place_id)
+  console.log(place_id)
   let mongo_id = await locationDao.findLocationbyPlaceID(place_id)
-  //console.log(mongo_id[0]._id.toString())
-  const articles = await articleDao.findArticlesbyLocation(mongo_id[0]._id.toString())
+  console.log(mongo_id)
+  if (mongo_id === null){
+    res.json([])
+    return
+  }
+  const articles = await articleDao.findArticlesbyLocation(mongo_id._id.toString())
   //console.log(articles)
   let modifiedArticles = await replaceLocationID(articles)
   if (modifiedArticles.length > 0){

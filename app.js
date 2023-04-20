@@ -8,19 +8,15 @@ import ImageController from './controllers/image-server/image-server-controller.
 import session from 'express-session'
 import mongoose from "mongoose";
 import AuthController from "./controllers/users/auth-controller.js";
-import UserController from './controllers/users/users-contoller.js'
-  const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
-  mongoose.connect(CONNECTION_STRING);
-  //console.log(CONNECTION_STRING)
+import UsersController from './controllers/users/users-controller.js'
 
-var sessionOptions = {
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
+  mongoose.connect(CONNECTION_STRING);
+  var sessionOptions = {
     secret: "secret",
     resave : true,
     saveUninitialized : false
 };
-
-
-
 const app = express();
 app.use(
     session({
@@ -43,7 +39,7 @@ const port = process.env.PORT || 4000;
 
 AuthController(app);
 ArticleController(app)
-UserController(app)
+UsersController(app)
 HelloController(app)
 GoogleController(app)
 ImageController(app)

@@ -7,6 +7,7 @@ import GoogleController from './controllers/google/google-controller.js'
 import ImageController from './controllers/image-server/image-server-controller.js'
 import session from 'express-session'
 import mongoose from "mongoose";
+import AuthController from "./controllers/users/auth-controller.js";
 import UserController from './controllers/users/users-contoller.js'
   const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
   mongoose.connect(CONNECTION_STRING);
@@ -17,16 +18,34 @@ var sessionOptions = {
     resave : true,
     saveUninitialized : false
 };
-  
 
 
-const app = express()
-app.use(cors())
+
+const app = express();
+app.use(
+    session({
+      secret: "any string",
+      resave: false,
+      saveUninitialized: true,
+    })
+);
+
+
+app.use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000",
+    })
+);
 app.use(express.json());
 app.use(session(sessionOptions));
+const port = process.env.PORT || 4000;
+
+AuthController(app);
 ArticleController(app)
 UserController(app)
 HelloController(app)
 GoogleController(app)
 ImageController(app)
-app.listen(4000)
+UsersController(app)
+app.listen(port)

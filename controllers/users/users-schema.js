@@ -1,13 +1,15 @@
 import mongoose from 'mongoose';
-import user_type from './user-types'
 
 const schema = mongoose.Schema({
     firstName: String,
     lastName: String,
-    user_type: user_type,
+    user_type: String,
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     email: String,
+    bio: String,
+    avatar: String,
+    reviewNum: Number,
 
 }, {collection: 'users'});
 

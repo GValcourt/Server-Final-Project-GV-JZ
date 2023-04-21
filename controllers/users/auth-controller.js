@@ -41,7 +41,11 @@ const AuthController = (app) => {
         res.sendStatus(200);
     };
 
-    const update   = async (req, res) => { };
+    const update = async (req, res) => {
+        const currentUser = req.session["currentUser"];
+        const result = await usersDao.updateUser(currentUser.uid, req.body);
+        res.json(result);                            // Not sure if this is the correct thing to return here
+    };
 
 
     app.post("/api/users/register", register);

@@ -46,7 +46,7 @@ const findUsersPred = async (req, res) => {
     let value = req.params.value
     let users = await usersDao.findUsersPred(pred, value)
     res.json(users)
-  }
+}
 
 
 const findUsersByType = async (req, res) => {

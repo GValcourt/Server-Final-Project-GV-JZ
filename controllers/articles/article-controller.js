@@ -36,12 +36,17 @@ const createArticle = async (req, res) => {
     newArticle.date = (new Date).toDateString();
     for (let i = 0; i < newArticle.location.length; i++){
       let locationQuery = await locationDao.findLocationbyPlaceID(newArticle.location[i].placeID)
-      if (locationQuery.length === 0){
+      //console.log(locationQuery)
+      if (locationQuery === null || locationQuery === []){
         await locationDao.createLocation(newArticle.location[i])
       }
       let mongoID = await locationDao.findLocationbyPlaceID(newArticle.location[i].placeID)
-      //console.log(mongoID[0])
-      newArray.push(mongoID[0]._id)
+      //console.log(mongoID)
+      if (mongoID === null){
+        print(null)
+      }
+      
+      newArray.push(mongoID._id)
     }
     const orgArticle = {...newArticle};
     //console.log(newArray)
@@ -89,9 +94,9 @@ const findArticleById = async (req, res) => {
 
 const findArticleByPlace = async (req, res) => {
   const place_id = req.params.uid;
-  console.log(place_id)
+  //console.log(place_id)
   let mongo_id = await locationDao.findLocationbyPlaceID(place_id)
-  console.log(mongo_id)
+  //console.log(mongo_id)
   if (mongo_id === null){
     res.json([])
     return

@@ -12,11 +12,6 @@ import UsersController from './controllers/users/users-controller.js'
 
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
   mongoose.connect(CONNECTION_STRING);
-  var sessionOptions = {
-    secret: "secret",
-    resave : true,
-    saveUninitialized : false
-};
 const app = express();
 app.use(
     session({
@@ -34,7 +29,6 @@ app.use(
     })
 );
 app.use(express.json());
-app.use(session(sessionOptions));
 const port = process.env.PORT || 4000;
 
 AuthController(app);

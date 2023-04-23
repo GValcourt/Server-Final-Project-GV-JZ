@@ -1,4 +1,5 @@
 import * as usersDao from "./users-dao.js";
+import {findUserByUsername} from "./users-dao.js";
 
 const AuthController = (app) => {
     const register = async (req, res) => {
@@ -58,10 +59,21 @@ const AuthController = (app) => {
         res.json(result);                            // Not sure if this is the correct thing to return here
     };
 
+    const checkUsername = async (req, res) => {
+        const username = req.body;
+        const user = await usersDao.findUserByUsername(username);
+        if(user){
+            res.send("That username is taken");
+        }
+        res.sendStatus(200);
+    }
+
+
     app.post("/api/users/register", register);
     app.post("/api/users/login",    login);
     app.post("/api/users/profile",  profile);
     app.post("/api/users/logout",   logout);
     app.put ("/api/users",          update);
+    app.post("api/users/check",       checkUsername);
 };
 export default AuthController;

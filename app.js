@@ -11,7 +11,8 @@ import AuthController from "./controllers/users/auth-controller.js";
 import UsersController from './controllers/users/users-controller.js'
 
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_FINAL
-mongoose.connect(CONNECTION_STRING);
+mongoose.connect("mongodb+srv://gvalcourt:gzSt5S33PeL3vhc@web-dev-cluster.upp6ro8.mongodb.net/Final-Project");
+
 const app = express();
 app.use(
     session({
@@ -37,5 +38,4 @@ UsersController(app)
 HelloController(app)
 GoogleController(app)
 ImageController(app)
-UsersController(app)
 app.listen(port)

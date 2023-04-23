@@ -6,6 +6,7 @@ const schema = mongoose.Schema({
   text: String,
   date: String,
   images: [String],
-  location: [{type: mongoose.Schema.Types.ObjectId, Model:'LocationModel'}]
+  location: [{type: mongoose.Schema.Types.ObjectId, Model:'LocationModel'}],
+  private: Boolean
 }, {collection: 'articles', versionKey: false });
 export default schema;

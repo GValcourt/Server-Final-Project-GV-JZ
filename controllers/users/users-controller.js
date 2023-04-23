@@ -4,17 +4,8 @@ const UsersController = async (app) => {
     app.get('/api/users', findUsers);
     app.get('/api/users/:uid', findUserById);
     app.get('/api/users/pred/:pred/:value', findUsersPred);
-    app.post('/api/users', createUser);
     app.delete('/api/users/:uid', deleteUser);
     app.put('/api/users/:uid', updateUser);
-}
-
-
-const createUser = async (req, res) => {
-    const newUser = req.body;
-    newUser._id = (new Date()).getTime() + '';
-    const insertedUser = await usersDao.createUser(newUser);
-    res.json(insertedUser);
 }
 
 const deleteUser = async (req, res) => {

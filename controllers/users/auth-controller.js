@@ -39,7 +39,7 @@ const AuthController = (app) => {
 
     const profile = async (req, res) => {
         const currentUser = req.session["currentUser"];
-        console.log("AuthController Profile currentUser: ", currentUser)
+        //console.log("AuthController Profile currentUser: ", currentUser)
         if (!currentUser) {
             res.sendStatus(404);
             return;

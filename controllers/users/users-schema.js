@@ -16,8 +16,8 @@ const schema = mongoose.Schema({
     website: String,
     location: String,
     dateJoined: String, //date?
-    reviewNum: String //would int be better?
-
+    reviewNum: Number, //would int be better?
+    business: String
 }, {collection: 'users'});
 
 export default schema;

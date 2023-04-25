@@ -8,7 +8,6 @@ const schema = mongoose.Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true }, //If this were a live system, I would use encryption
     email: String,
-    likes: [String], //Might make this an ObjectId
     avatar: String, //stored in firebase
     bannerPicture: String, //stored in firebase
     bio: String, //long

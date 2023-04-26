@@ -3,6 +3,7 @@ import {findUserByUsername} from "./users-dao.js";
 
 const AuthController = (app) => {
     const register = async (req, res) => {
+            console.log("Request: ", req.body);
             const username = req.body.username;
             const user = await usersDao.findUserByUsername(username);
             if (user) {
@@ -67,11 +68,24 @@ const AuthController = (app) => {
         res.sendStatus(200);
     }
 
+    const deleteCurrentUser = async (req, res) => {
+        const currentUser = req.session["currentUser"];
+        const result = await usersDao.deleteUser(currentUser.uid);
+        res.json(result);
+    };
+
+    const deleteUser = async (req, res) => {
+        const userID = req.body;
+        const result = await usersDao.deleteUser(userID);
+        res.json(result);
+    }
+
     app.post("/api/users/register", register);
     app.post("/api/users/login",    login);
     app.post("/api/users/profile",  profile);
     app.post("/api/users/logout",   logout);
     app.put ("/api/users",          update);
     app.post("api/users/check",     checkUsername);
+    app.post("/api/users/delete", deleteUser);
 };
 export default AuthController;

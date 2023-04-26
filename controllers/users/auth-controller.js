@@ -54,10 +54,12 @@ const AuthController = (app) => {
     };
 
     const update = async (req, res) => {
-        const currentUser = req.session["currentUser"];
-        const result = await usersDao.updateUser(currentUser.uid, req.body);
+        const uid = req.body.id;
+        const result = await usersDao.updateUser(uid, req.body);
         res.json(result);                            // Not sure if this is the correct thing to return here
     };
+
+
 
     const checkUsername = async (req, res) => {
         const username = req.body;
